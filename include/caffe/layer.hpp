@@ -10,8 +10,12 @@
 #include "caffe/common.hpp"
 #include "caffe/layer_factory.hpp"
 #include "caffe/proto/caffe.pb.h"
+<<<<<<< HEAD
 #include "caffe/util/coords.hpp"
 #include "caffe/util/device_alternate.hpp"
+=======
+#include "caffe/util/math_functions.hpp"
+>>>>>>> upstream/master
 
 /**
  Forward declare boost::thread instead of including boost/thread.hpp
