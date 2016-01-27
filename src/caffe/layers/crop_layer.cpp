@@ -3,9 +3,8 @@
 #include <set>
 #include <vector>
 
-#include "caffe/layer.hpp"
+#include "caffe/layers/crop_layer.hpp"
 #include "caffe/net.hpp"
-#include "caffe/vision_layers.hpp"
 
 namespace caffe {
 
@@ -38,6 +37,7 @@ void CropLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
     blob = this->net_->bottom_vecs()[layer_ind][0];
     path_blobs.insert(blob);
   }
+
   // Now walk back from the second bottom, until we find a blob of intersection.
   Blob<Dtype>* inter_blob = bottom[1];
   while (path_blobs.find(inter_blob) == path_blobs.end()) {
@@ -58,6 +58,7 @@ void CropLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
       coord_maps[i] = coord_maps[i].compose(layer->coord_map());
     }
   }
+
   // Compute the mapping from first bottom coordinates to second.
   DiagonalAffineMap<Dtype> crop_map =
       coord_maps[1].compose(coord_maps[0].inv());
