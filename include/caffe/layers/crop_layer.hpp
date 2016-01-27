@@ -1,5 +1,5 @@
-#ifndef CAFFE_VISION_LAYERS_HPP_
-#define CAFFE_VISION_LAYERS_HPP_
+// #ifndef CAFFE_VISION_LAYERS_HPP_
+// #define CAFFE_VISION_LAYERS_HPP_
 
 #include <string>
 #include <utility>
@@ -7,8 +7,8 @@
 
 #include "caffe/blob.hpp"
 #include "caffe/common.hpp"
-#include "caffe/common_layers.hpp"
-#include "caffe/data_layers.hpp"
+// #include "caffe/common_layers.hpp"
+// #include "caffe/data_layers.hpp"
 #include "caffe/layer.hpp"
 // #include "caffe/loss_layers.hpp"
 // #include "caffe/neuron_layers.hpp"

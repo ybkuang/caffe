@@ -6,7 +6,6 @@
 #include "caffe/blob.hpp"
 #include "caffe/layer.hpp"
 #include "caffe/proto/caffe.pb.h"
-
 #include "caffe/layers/base_conv_layer.hpp"
 
 namespace caffe {
@@ -65,6 +64,20 @@ class ConvolutionLayer : public BaseConvolutionLayer<Dtype> {
       : BaseConvolutionLayer<Dtype>(param) {}
 
   virtual inline const char* type() const { return "Convolution"; }
+
+  virtual inline DiagonalAffineMap<Dtype> coord_map() {
+     return FilterMap<Dtype>(this->kernel_shape_.cpu_data()[0], this->kernel_shape_.cpu_data()[1],
+          this->stride_.cpu_data()[0],this->stride_.cpu_data()[1],
+          this->pad_.cpu_data()[0], this->pad_.cpu_data()[1]).inv();
+  }
+
+  #ifndef CPU_ONLY
+  virtual inline DiagonalAffineMap<Dtype> coord_map() {
+     return FilterMap<Dtype>(this->kernel_shape_.gpu_data()[0], this->kernel_shape_.gpu_data()[1],
+          this->stride_.gpu_data()[0],this->stride_.gpu_data()[1],
+          this->pad_.gpu_data()[0], this->pad_.gpu_data()[1]).inv();
+  }
+  #endif
 
  protected:
   virtual void Forward_cpu(const vector<Blob<Dtype>*>& bottom,
