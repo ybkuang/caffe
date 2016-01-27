@@ -12,6 +12,7 @@
 #include "caffe/proto/caffe.pb.h"
 #include "caffe/util/coords.hpp"
 #include "caffe/util/device_alternate.hpp"
+#include "caffe/util/math_functions.hpp"
 
 /**
  Forward declare boost::thread instead of including boost/thread.hpp
